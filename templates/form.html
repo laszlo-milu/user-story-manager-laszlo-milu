@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>User story manager - Add new story</title>
+	</head>
+
+		<body>
+            {% if user_story.id %}
+            <h3>User Story Manager - Edit Story</h3>
+			<form action="/story/{{user_story.id}}" method="post">
+            {% else %}
+            <h3>User Story Manager - Add new Story</h3>
+            <form action="/story?" method="post">
+            {% endif %}
+
+				<p><label for="story_title">Story title</label>
+				<br><textarea id='story_title' name='story_title' rows="1" cols="50">{{user_story.story_title}}</textarea></p>
+
+				<p><label for="story_title">User story</label>
+				<br><textarea id='user_story' name='user_story' rows="5" cols="50">{{user_story.user_story}}</textarea></p>
+
+				<p><label for="story_title">Acceptance criteria</label>
+				<br><textarea id='acceptance_criteria' name='acceptance_criteria' rows="5" cols="50">{{user_story.acceptance_criteria}}</textarea></p>
+
+				<p><label for="story_title">Business value</label>
+				<br><input id='business_value' name='business_value' type="number" value={{user_story.business_value}} min="100" max="1500" step="100" /></p>
+
+				<p><label for="story_title">Estimation (h)</label>
+				<br><input id='estimation' name='estimation' type="number" value={{user_story.estimation}} min="0.5" max="40" step="0.5"/></p>
+
+				<p><label for="story_title">Status</label><br>
+				<select id='status' name = 'status'>
+			        <option value="planning">Planning</option>
+				    <option value="to do">To do</option>
+                    <option value="in progress">In progress</option>
+				    <option value="review">Review</option>
+				    <option value="done">Done</option>
+				</select></p>
+                {% if user_story.id %}
+    			<label for="submit">Update</label>
+                {% else %}
+                <label for="submit">Create</label>
+                {% endif %}
+				<br><button id="submit" type='submit'>Save</button>
+
+			</form>
+		</body>
+</html>

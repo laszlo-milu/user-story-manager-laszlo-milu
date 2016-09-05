@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>User story manager</title>
+
+	</head>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+		}
+	</style>
+		<body>
+            <h3>User Story Manager</h3>
+			<form action='/story'>
+				<input type="submit" value="Add new user story" />
+			</form>
+
+			<div>
+				<ul>
+					<table>
+						<thead>
+                            <tr>
+    							<td>Story title</td>
+    							<td>User story</td>
+    							<td>Acceptance criteria</td>
+    							<td>Business value</td>
+    							<td>Estimation time</td>
+    							<td>Status</td>
+    							<td></td>
+    						</tr>
+                        </thead>
+						{% for n in user_stories %}
+                        <tbody>
+    						<tr>
+    							<td>{{n.story_title}}</td>
+    							<td>{{n.user_story}}</td>
+    							<td>{{n.acceptance_criteria}}</td>
+    							<td>{{n.business_value}}</td>
+    							<td>{{n.estimation}}</td>
+    							<td>{{n.status}}</td>
+    							<td><a href="{{web2}}/{{n.id}}"><img src="static/bin.png" width="20" height="20" alt="Delete"></a>
+    							    <a href="{{web}}/{{n.id}}"><img src="static/pen.png" width="20" height="20" alt="Edit"></a></td>
+
+    						</tr>
+                        </tbody>
+						{% endfor %}
+					</table>
+      			</ul>
+
+			</div>
+
+		</body>
+
+</html>
