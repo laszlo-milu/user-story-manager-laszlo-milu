@@ -2,51 +2,57 @@
 <html>
 	<head>
 	    <title>User story manager</title>
-
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
-	<style>
-		table, th, td {
-			border: 1px solid black;
-		}
-	</style>
 		<body>
-            <h3>User Story Manager</h3>
-			<form action='/story'>
-				<input type="submit" value="Add new user story" />
-			</form>
+			<nav class="navbar navbar-default navbar-fixed-top">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="{{url_for('story')}}">Add New User Story</a>
+			    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+			<div class="container-fluid">
+				<br><br><br>
+				<h4>User Story Manager</h4>
+				<table class="table table-bordered">
+					<thead>
+                        <tr>
+							<td width="3%">Story ID</td>
+							<td width="15%">Story title</td>
+							<td width="20%">User story</td>
+							<td width="31%">Acceptance criteria</td>
+							<td width="3%">Business value</td>
+							<td width="3%">Estimation time</td>
+							<td width="5%">Status</td>
+							<td width="5%"></td>
+						</tr>
+                    </thead>
+					{% for n in user_stories %}
+                    <tbody>
+						<tr>
+							<td width="3%">{{n.id}}</td>
+							<td width="15%">{{n.story_title}}</td>
+							<td width="20%">{{n.user_story}}</td>
+							<td width="31%">{{n.acceptance_criteria}}</td>
+							<td width="3%">{{n.business_value}}</td>
+							<td width="3%">{{n.estimation}}</td>
+							<td width="5%">{{n.status}}</td>
+							<td width="5%"><a href="{{ url_for('delete_data', story_id=n.id) }}"><img src="static/bin.png" width="20" height="20" alt="Delete"></a>
+							    <a href="{{ url_for('update_data', story_id=n.id) }}"><img src="static/pen.png" width="20" height="20" alt="Edit"></a></td>
 
-			<div>
-				<ul>
-					<table>
-						<thead>
-                            <tr>
-    							<td>Story title</td>
-    							<td>User story</td>
-    							<td>Acceptance criteria</td>
-    							<td>Business value</td>
-    							<td>Estimation time</td>
-    							<td>Status</td>
-    							<td></td>
-    						</tr>
-                        </thead>
-						{% for n in user_stories %}
-                        <tbody>
-    						<tr>
-    							<td>{{n.story_title}}</td>
-    							<td>{{n.user_story}}</td>
-    							<td>{{n.acceptance_criteria}}</td>
-    							<td>{{n.business_value}}</td>
-    							<td>{{n.estimation}}</td>
-    							<td>{{n.status}}</td>
-    							<td><a href="{{web2}}/{{n.id}}"><img src="static/bin.png" width="20" height="20" alt="Delete"></a>
-    							    <a href="{{web}}/{{n.id}}"><img src="static/pen.png" width="20" height="20" alt="Edit"></a></td>
-
-    						</tr>
-                        </tbody>
-						{% endfor %}
-					</table>
-      			</ul>
-
+						</tr>
+                    </tbody>
+					{% endfor %}
+				</table>
 			</div>
 
 		</body>

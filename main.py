@@ -20,7 +20,7 @@ def story():
 
 @app.route('/story', methods=['POST'])
 def handle_data():
-    user_story = UserStory.create(story_title = request.form['story_title'],
+    user_story = UserStory.create(story_title=request.form['story_title'],
                                   user_story=request.form['user_story'],
                                   acceptance_criteria=request.form['acceptance_criteria'],
                                   business_value = request.form['business_value'],

@@ -2,47 +2,71 @@
 <html>
 	<head>
 	    <title>User story manager - Add new story</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
-
 		<body>
-            {% if user_story.id %}
-            <h3>User Story Manager - Edit Story</h3>
-			<form action="/story/{{user_story.id}}" method="post">
-            {% else %}
-            <h3>User Story Manager - Add new Story</h3>
-            <form action="/story?" method="post">
-            {% endif %}
+			<nav class="navbar navbar-default navbar-fixed-top">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="{{url_for('list_data')}}">List of User Stories</a>
+			    </div>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+			<div class="container-fluid">
+				<br><br><br>
 
-				<p><label for="story_title">Story title</label>
-				<br><textarea id='story_title' name='story_title' rows="1" cols="50">{{user_story.story_title}}</textarea></p>
-
-				<p><label for="story_title">User story</label>
-				<br><textarea id='user_story' name='user_story' rows="5" cols="50">{{user_story.user_story}}</textarea></p>
-
-				<p><label for="story_title">Acceptance criteria</label>
-				<br><textarea id='acceptance_criteria' name='acceptance_criteria' rows="5" cols="50">{{user_story.acceptance_criteria}}</textarea></p>
-
-				<p><label for="story_title">Business value</label>
-				<br><input id='business_value' name='business_value' type="number" value={{user_story.business_value}} min="100" max="1500" step="100" /></p>
-
-				<p><label for="story_title">Estimation (h)</label>
-				<br><input id='estimation' name='estimation' type="number" value={{user_story.estimation}} min="0.5" max="40" step="0.5"/></p>
-
-				<p><label for="story_title">Status</label><br>
-				<select id='status' name = 'status'>
-			        <option value="planning">Planning</option>
-				    <option value="to do">To do</option>
-                    <option value="in progress">In progress</option>
-				    <option value="review">Review</option>
-				    <option value="done">Done</option>
-				</select></p>
-                {% if user_story.id %}
-    			<label for="submit">Update</label>
-                {% else %}
-                <label for="submit">Create</label>
-                {% endif %}
-				<br><button id="submit" type='submit'>Save</button>
-
-			</form>
+	            {% if user_story.id %}
+	            <h4>User Story Manager - Edit Story</h4>
+				<form action="/story/{{user_story.id}}" method="post">
+	            {% else %}
+	            <h4>User Story Manager - Add new Story</h4>
+	            <form action="/story?" method="post">
+	            {% endif %}
+				  <div class="form-group">
+				    <label for="story_title">Story Title</label>
+					    <input type="text" class="form-control" id="story_title" name="story_title" placeholder="Story Title..." value={{user_story.story_title}}>
+				  </div>
+				  <div class="form-group">
+				    <label for="story_title">User Story</label>
+					<textarea class="form-control" rows="3" id="user_story" name="user_story"placeholder="User Story..." value={{user_story.user_story}}></textarea>
+				  </div>
+				  <div class="form-group">
+				    <label for="story_title">Acceptance Criteria</label>
+					<textarea class="form-control" rows="3" id="acceptance_criteria" name="acceptance_criteria" placeholder="Acceptance Criteria..." value={{user_story.acceptance_criteria}}></textarea>
+				  </div>
+				  <div class="form-group">
+					  <label for="story_title">Business value</label>
+					  <input class="form_control" id='business_value' name='business_value' type="number" min="100" max="1500" step="100" value={{user_story.business_value}}/>
+				  </div>
+				  <div class="form-group">
+					  <label for="story_title">Estimation (h)</label>
+					  <input class="form_control" id='estimation' name='estimation' type="number" min="0.5" max="40" step="0.5" value={{user_story.estimation}}/>
+				  </div>
+				  <div class="form-group">
+					<label for="story_title">Status</label>
+  					<select id='status' name='status'>
+  				        <option value="planning">Planning</option>
+  					    <option value="to do">To do</option>
+  	                    <option value="in progress">In progress</option>
+  					    <option value="review">Review</option>
+  					    <option value="done">Done</option>
+  					</select>
+				  </div>
+				  {% if user_story.id %}
+				  <label for="submit">Update</label>
+				  {% else %}
+				  <label for="submit">Create</label>
+				  {% endif %}
+				  <button type="submit" id="submit" class="btn btn-default">Save</button>
+				</form>
+			</div>
 		</body>
 </html>
